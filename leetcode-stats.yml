@@ -1,0 +1,30 @@
+name: Update LeetCode Stats
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"  # প্রতি ১২ ঘন্টায় রান করবে
+  workflow_dispatch:        # ম্যানুয়ালি রান এর জন্য
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update README with LeetCode Stats
+        uses: anmol098/waka-readme-stats@master
+        with:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SHOW_LEETCODE: "True"
+          LEETCODE_USERNAME: "eakterhossain"
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Auto update LeetCode stats"
+          git push
+        continue-on-error: true
