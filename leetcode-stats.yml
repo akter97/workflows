@@ -1,9 +1,9 @@
-name: Update LeetCode Stats
+ name: Update LeetCode Stats
 
 on:
   schedule:
-    - cron: "01 */0 * * *"  
-  workflow_dispatch:       
+    - cron: "0 */12 * * *"  # প্রতি ১২ ঘণ্টায় রান হবে
+  workflow_dispatch:        # ম্যানুয়াল রান করার জন্য
 
 jobs:
   update-stats:
